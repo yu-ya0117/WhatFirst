@@ -33,3 +33,9 @@
 
 ### MVPに含めなかった理由
 機能が増えるほど、判断コストが増えるため。
+
+## 画面遷移図（MVPのみ）
+[![Image from Gyazo](https://i.gyazo.com/ec82d28abbf77f1dadc9e257e44b113e.png)](https://gyazo.com/ec82d28abbf77f1dadc9e257e44b113e)
+
+## ER図（MVPのみ）
+![ER図](docs/er_diagram.png)
