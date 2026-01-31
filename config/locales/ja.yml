@@ -1,0 +1,7 @@
+ja:
+  enums: 
+    task:
+      priority:
+        high: "高"
+        medium:: "中"
+        low: "底"

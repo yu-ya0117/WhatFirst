@@ -25,11 +25,12 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: "Task was successfully created." }
-        format.json { render :show, status: :created, location: @task }
+        redirect_to tasks_path, success: 'タスクの作成が成功しました。'
+        # format.json { render :show, status: :created, location: @task }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        flash.now[:alert] = "タスクの作成に失敗しました。"
+        render :new, status: :unprocessable_entity
+        # format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
   end
