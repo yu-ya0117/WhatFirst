@@ -3,5 +3,5 @@ ja:
     task:
       priority:
         high: "高"
-        medium:: "中"
+        medium: "中"
         low: "底"

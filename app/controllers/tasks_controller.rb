@@ -23,15 +23,13 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
-    respond_to do |format|
-      if @task.save
-        redirect_to tasks_path, success: 'タスクの作成が成功しました。'
-        # format.json { render :show, status: :created, location: @task }
-      else
-        flash.now[:alert] = "タスクの作成に失敗しました。"
-        render :new, status: :unprocessable_entity
-        # format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.save
+      redirect_to tasks_path, success: "タスクの作成が成功しました。"
+      # format.json { render :show, status: :created, location: @task }
+    else
+      flash.now[:alert] = "タスクの作成に失敗しました。"
+      render :new, status: :unprocessable_entity
+      # format.json { render json: @task.errors, status: :unprocessable_entity }
     end
   end
 
@@ -47,7 +45,7 @@ class TasksController < ApplicationController
       end
     end
   end
-
+  
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
     @task.destroy!
@@ -66,6 +64,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.expect(task: [ :title, :priority, :completed ])
+      params.require(:task).permit(:title, :priority).merge(completed: false)
     end
 end
