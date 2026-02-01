@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Tasks" %>
+
+<h1>WhatFirst</h1>
+
+<%= button_to "タスク追加", new_task_path, method: :get %>
+
+<div id="tasks">
+  <% @tasks.each do |task| %>
+    <%= render task %>
+    <p>
+      <%= link_to "Show this task", task %>
+    </p>
+  <% end %>
+</div>
