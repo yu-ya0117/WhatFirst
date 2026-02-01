@@ -45,7 +45,7 @@ class TasksController < ApplicationController
       end
     end
   end
-  
+
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
     @task.destroy!
