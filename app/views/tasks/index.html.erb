@@ -5,12 +5,18 @@
 <h1>WhatFirst</h1>
 
 <%= button_to "タスク追加", new_task_path, method: :get %>
-
+<hr>
+<% previous_priority = nil %>
 <div id="tasks">
   <% @tasks.each do |task| %>
+    <% if previous_priority && previous_priority != task.priority %>
+      <hr>
+    <% end %>
+
     <%= render task %>
     <p>
       <%= link_to "Show this task", task %>
     </p>
+    <% previous_priority = task.priority %>
   <% end %>
 </div>
