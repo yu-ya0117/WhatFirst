@@ -1,5 +1,9 @@
 <div id="<%= dom_id task %>">
-  <div>
+  <div style="display: flex; gap: 10px; align-items: center;">
     <p>【<%= task.priority_label %>】 <%= task.title %></p>
+    <%= form_with model: task, local: true do |f|%>
+      <%= f.check_box :completed %>
+      <%= f.submit "完了" %>
+    <% end %>
   </div>
 </div>
