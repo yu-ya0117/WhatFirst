@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.order(:priority)
+    @tasks = Task.incomplete.order(priority: :asc)
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -37,7 +37,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: "Task was successfully updated.", status: :see_other }
+        format.html { redirect_to tasks_path, notice: "Task was successfully updated.", status: :see_other }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -56,6 +56,12 @@ class TasksController < ApplicationController
     end
   end
 
+  def complete
+    @task = Task.find(params[:id])
+    @task.update(completed: true)
+    redirect_to tasks_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
@@ -64,6 +70,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:title, :priority).merge(completed: false)
+      params.require(:task).permit(:title, :priority, :completed)
     end
 end
