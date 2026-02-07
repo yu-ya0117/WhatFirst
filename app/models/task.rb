@@ -3,6 +3,8 @@ class Task < ApplicationRecord
   validates :title, presence: true
   validates :priority, presence: true
 
+  scope :incomplete, -> { where(completed: false) }
+
   def priority_label
     I18n.t("enums.task.priority.#{priority}")
   end
