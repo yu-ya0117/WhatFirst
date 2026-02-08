@@ -1,12 +1,12 @@
-<% content_for :title, "Editing task" %>
+<% content_for :title, "タスク編集" %>
 
-<h1>Editing task</h1>
+<h2>タスク編集</h2>
 
 <%= render "form", task: @task %>
 
 <br>
 
 <div>
-  <%= link_to "Show this task", @task %> |
-  <%= link_to "Back to tasks", tasks_path %>
+  <%= link_to "タスク詳細", @task %> |
+  <%= link_to "未完了タスク一覧へ戻る", tasks_path %>
 </div>

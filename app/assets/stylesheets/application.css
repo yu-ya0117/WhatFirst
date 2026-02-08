@@ -8,3 +8,32 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+.priority-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  margin-right: 6px;
+}
+
+.priority-high {
+  border-color: #e53935;
+  color: #e53935;
+}
+
+.priority-medium {
+  border-color: #fb8c00;
+  color: #fb8c00;
+}
+
+.priority-low {
+  border-color: #43a047;
+  color: #43a047;
+}
+
+.task-completed {
+  opacity: 0.5;
+  text-decoration: line-through;
+}

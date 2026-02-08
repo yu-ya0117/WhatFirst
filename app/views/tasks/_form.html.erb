@@ -31,6 +31,6 @@
   -->
 
   <div>
-    <%= form.submit(value = "作成") %>
+    <%= form.submit task.persisted? ? "更新" : "作成" %>
   </div>
 <% end %>

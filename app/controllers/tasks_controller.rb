@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ show edit update ]
 
   # GET /tasks or /tasks.json
   def index
@@ -24,7 +24,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-      redirect_to tasks_path, success: "タスクの作成が成功しました。"
+      redirect_to tasks_path, notice: "タスクの作成が成功しました。"
       # format.json { render :show, status: :created, location: @task }
     else
       flash.now[:alert] = "タスクの作成に失敗しました。"
@@ -37,7 +37,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to tasks_path, notice: "Task was successfully updated.", status: :see_other }
+        format.html { redirect_to tasks_path, notice: "タスクの状態を更新しました。", status: :see_other }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -47,19 +47,20 @@ class TasksController < ApplicationController
   end
 
   # DELETE /tasks/1 or /tasks/1.json
-  def destroy
-    @task.destroy!
+  # def destroy
+  #   @task.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to tasks_path, notice: "Task was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to tasks_path, notice: "Task was successfully destroyed.", status: :see_other }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   def complete
     @task = Task.find(params[:id])
-    @task.update(completed: true)
-    redirect_to tasks_path
+    if @task.update(completed: true)
+      redirect_to tasks_path, notice: "タスクが完了しました。"
+    end
   end
 
   private
