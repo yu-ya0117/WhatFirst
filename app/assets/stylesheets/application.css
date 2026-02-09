@@ -1,14 +1,9 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
-.priority-tag {
+ body {
+  background-color: #EEF8F7;
+  color: #333333;
+ }
+ 
+.priority-tag, .btn {
   display: inline-block;
   padding: 2px 8px;
   border-radius: 6px;
@@ -36,4 +31,48 @@
 .task-completed {
   opacity: 0.5;
   text-decoration: line-through;
+}
+
+.btn {
+  background-color: #446EEB;
+  color: #FFFFFF;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+button {
+  margin-bottom: 10px;
+}
+
+hr{
+  border: 0.5px solid #333333;
+}
+
+.text-field {
+  background-color: white;
+  border: 0.5px solid #333333;
+  border-radius: 6px;
+  width: 80%;
+  height: 20px;
+}
+
+.task-list{
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.task-actions {
+  display: flex;
+  align-items: right;
+  gap: 8px;
+}
+
+.form-group {
+  margin-bottom: 20px;
 }

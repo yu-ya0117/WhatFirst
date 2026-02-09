@@ -11,12 +11,12 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="form-group">
     <%= form.label "タスク名", style: "display: block" %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: "text-field"%>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label "優先度", style: "display: block" %>
     <%= form.radio_button :priority, :high %><%= form.label :priority, "高" %>
     <%= form.radio_button :priority, :medium %><%= form.label :priority, "中" %>
@@ -31,6 +31,6 @@
   -->
 
   <div>
-    <%= form.submit task.persisted? ? "更新" : "作成" %>
+    <%= form.submit task.persisted? ? "更新" : "作成", class: "btn" %>
   </div>
 <% end %>

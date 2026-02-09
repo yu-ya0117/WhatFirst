@@ -1,14 +1,18 @@
 <div id="<%= dom_id task %>" class="<%= 'task-completed' if task.completed? %>">
-  <div style="display: flex; gap: 10px; align-items: center;">
-    <p>
-      <span class="priority-tag priority-<%= task.priority %>">
-        【<%= task.priority_label %>】
-      </span> 
-      <%= task.title %>
-    </p>
-    <%= form_with model: task, local: true do |f|%>
-      <%= f.check_box :completed %>
-      <%= f.submit "完了" %>
-    <% end %>
+  <div style="display: flex; justify-content: space-between; gap: 10px; align-items: center;">
+    <div>
+      <p>
+        <span class="priority-tag priority-<%= task.priority %>">
+          【<%= task.priority_label %>】
+        </span> 
+        <%= task.title %>
+      </p>
+    </div>
+    <div>
+      <%= form_with model: task, local: true do |f|%>
+        <%= f.check_box :completed %>
+        <%= f.submit "完了", class: "btn" %>
+      <% end %>
+    </div>
   </div>
 </div>
