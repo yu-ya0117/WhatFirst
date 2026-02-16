@@ -91,12 +91,12 @@ rails s
 
 永野 裕也  
 ITエンジニア転職を目指して学習中。  
-JavaでPomodoroTimerアプリを開発・GitHubにて公開済み。  
-（https://github.com/yu-ya0117/PomodoroTimer）
+
 
 ---
 
 ## 他の制作物
 
 * Java + Swing で PomodoroTimer を開発
-  → 実行ファイル化、GitHub公開済み
+  → 実行ファイル化、GitHub公開済み  
+( https://github.com/yu-ya0117/PomodoroTimer )
