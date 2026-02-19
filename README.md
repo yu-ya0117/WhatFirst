@@ -8,6 +8,7 @@
 
 [https://whatfirst.onrender.com/tasks](https://whatfirst.onrender.com/tasks)
 
+
 ---
 
 ## スクリーンショット
@@ -38,6 +39,18 @@
 * Render（デプロイ）
 * Rails Test
 * Git / GitHub
+
+---
+
+## 技術的なポイント
+
+* PostgreSQLへの移行
+* Renderでの本番デプロイ
+* 環境変数による設定管理
+* database.ymlのproduction設定対応
+
+※ 本番環境は Render 上で PostgreSQL と接続し、  
+   環境変数によって本番用設定を切り替えています。
 
 ---
 
@@ -100,3 +113,7 @@ ITエンジニア転職を目指して学習中。
 * Java + Swing で PomodoroTimer を開発
   → 実行ファイル化、GitHub公開済み  
 ( https://github.com/yu-ya0117/PomodoroTimer )
+
+---
+
+※ credentials.yml.enc は暗号化されており、master.key はGitHubに含まれていません。
