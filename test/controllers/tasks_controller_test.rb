@@ -34,8 +34,12 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should update task" do
-    patch task_url(@task), params: { task: { completed: @task.completed, priority: @task.priority, title: @task.title } }
+  def test_cannot_complete_without_check
+    patch task_url(@task), params: { task: { completed: "0" } }
+
+    assert_redirected_to tasks_url
+    follow_redirect!
+    assert_match "完了するにはチェックを入れてください", response.body
   end
 
   # test "should destroy task" do

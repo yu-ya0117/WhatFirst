@@ -35,14 +35,13 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
-    respond_to do |format|
-      if @task.update(task_params)
-        format.html { redirect_to tasks_path, notice: "タスクの状態を更新しました。", status: :see_other }
-        format.json { render :show, status: :ok, location: @task }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    Rails.logger.debug params.inspect
+    return redirect_without_check unless checked?
+
+    if @task.update(completed: true)
+      redirect_to tasks_path, notice: "タスクを完了しました"
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -56,13 +55,6 @@ class TasksController < ApplicationController
   #   end
   # end
 
-  def complete
-    @task = Task.find(params[:id])
-    if @task.update(completed: true)
-      redirect_to tasks_path, notice: "タスクが完了しました。"
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
@@ -72,5 +64,13 @@ class TasksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def task_params
       params.require(:task).permit(:title, :priority, :completed)
+    end
+
+    def checked?
+      params.dig(:task, :completed) == "1"
+    end
+
+    def redirect_without_check
+      redirect_to tasks_path, alert: "完了するにはチェックを入れてください。"
     end
 end
