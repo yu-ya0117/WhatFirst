@@ -76,3 +76,6 @@ hr{
 .form-group {
   margin-bottom: 20px;
 }
+
+.flash-notice { color: green; }
+.flash-alert  { color: red; }
