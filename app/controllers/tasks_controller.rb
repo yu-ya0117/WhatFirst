@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update ]
+  before_action :set_task, only: %i[ show edit update complete ]
 
   # GET /tasks or /tasks.json
   def index
@@ -35,11 +35,8 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
-    Rails.logger.debug params.inspect
-    return redirect_without_check unless checked?
-
-    if @task.update(completed: true)
-      redirect_to tasks_path, notice: "タスクを完了しました"
+    if @task.update(task_params)
+      redirect_to tasks_path, notice: notice_message
     else
       render :edit, status: :unprocessable_entity
     end
@@ -55,6 +52,15 @@ class TasksController < ApplicationController
   #   end
   # end
 
+  def complete
+    if params.dig(:task, :completed) != "1"
+      return redirect_to tasks_path, alert: "完了するにはチェックを入れてください。"
+    end
+
+    @task.update(completed: true)
+    redirect_to tasks_path, notice: notice_message
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
@@ -66,11 +72,15 @@ class TasksController < ApplicationController
       params.require(:task).permit(:title, :priority, :completed)
     end
 
-    def checked?
-      params.dig(:task, :completed) == "1"
-    end
-
-    def redirect_without_check
-      redirect_to tasks_path, alert: "完了するにはチェックを入れてください。"
+    def notice_message
+      if @task.saved_change_to_completed?
+        "タスクを完了しました"
+      elsif @task.saved_change_to_title?
+        "タスク名を変更しました"
+      elsif @task.saved_change_to_priority?
+        "優先度を変更しました"
+      else
+        "タスクを更新しました"
+      end
     end
 end

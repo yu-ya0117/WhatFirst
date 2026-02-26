@@ -9,7 +9,10 @@
       </p>
     </div>
     <div>
-      <%= form_with model: task, local: true do |f|%>
+      <%= form_with model: task,
+                    url: complete_task_path(task),
+                    method: :patch,
+                    local: true do |f|%>
         <%= f.check_box :completed %>
         <%= f.submit "完了", class: "btn" %>
       <% end %>
