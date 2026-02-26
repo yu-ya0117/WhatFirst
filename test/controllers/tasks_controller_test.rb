@@ -34,12 +34,11 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  def test_cannot_complete_without_check
-    patch task_url(@task), params: { task: { completed: "0" } }
+  test "cannot complete task without checking box" do
+    patch complete_task_url(@task), params: { task: { completed: "0" } }
 
     assert_redirected_to tasks_url
-    follow_redirect!
-    assert_match "完了するにはチェックを入れてください", response.body
+    assert_equal "完了するにはチェックを入れてください。", flash[:alert]
   end
 
   # test "should destroy task" do
