@@ -25,11 +25,8 @@ class TasksController < ApplicationController
 
     if @task.save
       redirect_to tasks_path, notice: "タスクの作成が成功しました。"
-      # format.json { render :show, status: :created, location: @task }
     else
-      flash.now[:alert] = "タスクの作成に失敗しました。"
       render :new, status: :unprocessable_entity
-      # format.json { render json: @task.errors, status: :unprocessable_entity }
     end
   end
 

@@ -1,7 +1,12 @@
 ja:
+  activerecord:
+    attributes:
+      task:
+        title: "タスク名"
+        priority: "優先度"
   enums: 
     task:
       priority:
         high: "★ 高"
         medium: "⚫︎ 中"
-        low: "・ 底"
+        low: "・ 低"
