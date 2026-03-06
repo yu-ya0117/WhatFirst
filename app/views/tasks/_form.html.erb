@@ -1,7 +1,7 @@
 <%= form_with(model: task) do |form| %>
   <% if task.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <h2>入力内容にエラーがあります</h2>
 
       <ul>
         <% task.errors.each do |error| %>
@@ -18,9 +18,18 @@
 
   <div class="form-group">
     <%= form.label "優先度", style: "display: block" %>
-    <%= form.radio_button :priority, :high %><%= form.label :priority, "高" %>
-    <%= form.radio_button :priority, :medium %><%= form.label :priority, "中" %>
-    <%= form.radio_button :priority, :low %><%= form.label :priority, "底" %>
+
+    <label>
+      <%= form.radio_button :priority, "high" %> 高
+    </label>
+
+    <label>
+      <%= form.radio_button :priority, "medium" %> 中
+    </label>
+
+    <label>
+      <%= form.radio_button :priority, "low" %> 低
+    </label>
   </div>
 
   <!--

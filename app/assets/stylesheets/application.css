@@ -79,3 +79,7 @@ hr{
 
 .flash-notice { color: green; }
 .flash-alert  { color: red; }
+
+.field_with_errors {
+  display: inline;
+}
